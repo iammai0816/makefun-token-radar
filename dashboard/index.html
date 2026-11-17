@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Token Radar — pre-token protocols ranked by implied value</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top">
+  <div class="brand">
+    <span class="pulse" aria-hidden="true"></span>
+    <div>
+      <h1>Token Radar</h1>
+      <p>Protocols that record no token yet, ranked by what a token would be worth if their record stayed as it is.</p>
+    </div>
+  </div>
+  <div class="stats" id="stats"></div>
+</header>
+
+<section class="model" id="model">
+  <h2>How the value is built</h2>
+  <p id="model-text"></p>
+  <p class="fine">“Pre-token” means the snapshot records no token — no market cap, no CoinGecko id, no symbol. That is not proof a protocol has no token. The board never predicts whether or when a token is issued.</p>
+</section>
+
+<section class="controls" aria-label="Filter and sort the board">
+  <label>Search <input id="q" type="search" placeholder="Protocol name or slug"></label>
+  <label>Category <select id="cat"><option value="">All categories</option></select></label>
+  <label>Chain <select id="chain"><option value="">All chains</option></select></label>
+  <label>Status <select id="status"><option value="pre">Pre-token board</option><option value="live">Live tokens (already trading)</option></select></label>
+  <label>Sort <select id="sort">
+    <option value="value">Implied value ↓</option>
+    <option value="tvl">TVL ↓</option>
+    <option value="growth">7-day growth ↓</option>
+    <option value="age">Age ↓</option>
+    <option value="name">Name A–Z</option>
+  </select></label>
+  <span class="count" id="count"></span>
+</section>
+
+<main class="layout">
+  <div class="board-wrap">
+    <table id="board">
+      <thead><tr>
+        <th data-k="rank">#</th><th data-k="name">Protocol</th><th data-k="category">Category</th>
+        <th data-k="chains">Chains</th><th data-k="tvl">TVL</th><th data-k="growth">7d</th>
+        <th data-k="age">Age</th><th data-k="value">Implied value</th>
+      </tr></thead>
+      <tbody id="rows"></tbody>
+    </table>
+    <p class="empty" id="empty" hidden>No protocols match this filter.</p>
+  </div>
+  <aside class="detail" id="detail" aria-live="polite">
+    <p class="hint">Click a row to open its detail view: TVL, growth, age, chains, category, farm steps and token status.</p>
+  </aside>
+</main>
+
+<section class="live" id="live-sec">
+  <h2>Live tokens — already trading, kept apart</h2>
+  <p>These protocols record a token with a market cap. They are shown at that recorded value and never mixed into the pre-token ranking.</p>
+  <table id="live-table">
+    <thead><tr><th>Protocol</th><th>Category</th><th>Chains</th><th>TVL</th><th>7d</th><th>Market cap</th></tr></thead>
+    <tbody id="live-rows"></tbody>
+  </table>
+</section>
+
+<footer>
+  <p>Token Radar · snapshot as of <span id="asof"></span> · model radar-v2 · 150 pre-token rows: all 40 watchlist protocols plus the 110 highest-scoring others.</p>
+</footer>
+<script src="../data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
